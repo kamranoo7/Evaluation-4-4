@@ -9,12 +9,13 @@ userRouter.post("/register",async(req,res)=>{
     let {name,email,gender,password}=req.body
     let user=await UserModel.findOne({email})
     if(user){
-        res.status(200).send({"msg":"user alrady exist"})
+        res.status(200).send({"msg":"user already exist"})
     }else{
         try{
 bcrypt.hash(password,5,async(err,hash)=>{
     let user=new UserModel({email,name,gender,password:hash})
     await user.save()
+    res.status(200).send({"msg":"new user has been added"})
 })
         }catch(err){
         res.status(400).send({"msg":err.message})

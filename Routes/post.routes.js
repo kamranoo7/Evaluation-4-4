@@ -13,7 +13,7 @@ postRouter.post("/create",async(req,res)=>{
 })
 postRouter.get("/",async(req,res)=>{
     try{
-        let post=await PostModel.find({authorID:req.body.authorID})
+        let post=await PostModel.find()
         res.status(200).send(post)
     }catch(err){
         res.status(400).send({"msg":err.message})
