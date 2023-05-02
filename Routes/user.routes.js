@@ -32,7 +32,7 @@ if(user){
     bcrypt.compare(password,user.password,(err,result)=>{
         if(result){
             let token=jwt.sign({authorID:user._id,author:userRouter.name},"masai")
-            res.status(200).send({"msg":"Login Succesfully","toekn":token})
+            res.status(200).send({"msg":"Login Succesfully","token":token})
         }else{
             res.status(400).send({"msg":"wrong credential"})
         }
